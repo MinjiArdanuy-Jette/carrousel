@@ -27,7 +27,8 @@ function enqueue_style_script()
     true
   );
 }
-
+// Il faut que wp_head(); sooit ajouté juste avant la bbalise </head>
+//et que wp_footer; soit ajouté juste avant la balise </body>
 add_action('wp_enqueue_scripts', 'enqueue_style_script');
 function genere_html()
 {
@@ -40,5 +41,7 @@ function genere_html()
   </div>';
   return $html;
 }
-
+//[carrousel] juste après la galerie dans votre article ou page
+//Quand la finction the_content() rencontrera [carrousel] c'est à ce moment 
+//que le carrousel sera initialisé
 add_shortcode("carrousel", "genere_html");

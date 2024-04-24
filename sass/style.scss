@@ -1,14 +1,21 @@
 .carrousel {
-  transform: scale(0);
-  transition: transform 0.5s ease-in-out;
-  position: absolute;
+  // boîte modale qui contiendra le carrousel
+  transform: scale(0); //la boîte modale est invisible
+  transition: transform 0.5s ease-in-out; // permet d'animer l'ouverture de la boîte modale
+  position: fixed; // la division carrousel est une boîte modale
   width: 100%;
-  height: 100%;
+  height: 90%;
   // border: 2px solid red;
   background-color: rgba(105, 75, 255, 0.63);
   top: 0;
   left: 0;
   z-index: 1;
+  @media screen and (min-width: 400px) {
+    width: 750%;
+    width: 75%;
+    top: 12.5%;
+    left: 12.5%;
+  }
 }
 
 .carrousel--ouvrir {
