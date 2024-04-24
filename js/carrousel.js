@@ -12,6 +12,7 @@
   /*VARIABLES POUR AFFICHER LES IMAGES DE LA GALERIE DANS CARROUSEL*/
   let galerie = document.querySelector(".galerie");
   console.log("conteneur carrousel : " + galerie.tagName);
+  let index = 0;
 
   let carrousel__figure = document.querySelector(".carrousel__figure");
   /*Création dynamique d'une image du carrousel*/
@@ -25,14 +26,40 @@
   carrousel__figure.appendChild(carrousel__img);
   console.log(carrousel__figure);*/
 
-  /*Créatiom d'une collection d'images dans le carrousel*/
+  /*Création dynamique d'une collection d'images dans le carrousel*/
   let galerie__img = galerie.querySelectorAll("img");
   console.log(galerie__img);
   for (const elm of galerie__img) {
-    let carrousel__img = document.createElement("img");
-    carrousel__img.classList.add("carrousel__img");
-    carrousel__img.src = elm.src;
-    carrousel__figure.appendChild(carrousel__img);
+    creer_image_carrousel(index, elm);
+    index = index + 1;
+  }
+
+  /**
+   * Créer l'image du carrousel à partir de la galerie
+   * @param {*} index  le numéro de l'image
+   * @param elm l'élément image de la galerie
+   */
+  function creer_image_carrousel(index, elm) {
+    for (const elm of galerie__img) {
+      let carrousel__img = document.createElement("img");
+      carrousel__img.classList.add("carrousel__img");
+      carrousel__img.src = elm.src;
+      /*Ajout d'un index pour chaque image*/
+      carrousel__img.dataset.index = index;
+      carrousel__figure.appendChild(carrousel__img);
+    }
+    /**
+     * Création d'un radio bouton du carrousel
+     * @param {*} index  le numéro du radio
+     */
+    function creer_radio_carroussel(index) {
+      let carrousel__radio = document.createElement("input");
+      //class
+      //index
+      //type
+      //name
+      //ajouter dans carrousel__form
+    }
   }
 
   /*SECTION OUVERTURE ET FERMETURE DU CARROUSEL*/

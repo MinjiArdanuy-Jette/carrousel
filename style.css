@@ -23,12 +23,18 @@
 }
 
 .carrousel__figure {
-  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .carrousel__img {
+  position: absolute;
   width: 100%;
-  height: auto;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 1;
 }
 
 .carrousel__x {
@@ -37,6 +43,7 @@
   top: 0;
   padding: 5px 3px;
   border: 1px solid #eee;
+  z-index: 1;
 }
 
 .bouton_ouvrir {
