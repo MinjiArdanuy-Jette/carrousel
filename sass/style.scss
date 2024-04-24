@@ -13,7 +13,7 @@
   @media screen and (min-width: 400px) {
     width: 750%;
     width: 75%;
-    top: 12.5%;
+    top: 0;
     left: 12.5%;
   }
 }
@@ -33,7 +33,7 @@
   top: 0;
   left: 0;
   object-fit: cover;
-  opacity: 1; // rend les images invisibles;
+  opacity: 0; // rend les images invisibles;
 }
 
 .carrousel__x {
@@ -47,4 +47,14 @@
 
 .bouton_ouvrir {
   width: 200px;
+}
+
+/*Styles pour les boutons radio*/
+.carrousel__form {
+  display: flex;
+  position: relative;
+}
+.carrousel__radio {
+  width: 20px;
+  margin-left: 20px;
 }

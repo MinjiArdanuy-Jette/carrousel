@@ -37,7 +37,7 @@ function genere_html()
   <div class="carrousel">
   <button class="carrousel__x">X</button>
   <figure class="carrousel__figure"></figure>
-  <form action="" class = "carrousel_form"></form>
+  <form action="" class = "carrousel__form"></form>
   </div>';
   return $html;
 }
