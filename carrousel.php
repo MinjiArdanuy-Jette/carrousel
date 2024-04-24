@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Caroussel
+ * Plugin Name: Carousel
  * Author: Minji Ardanuy-Jetté
  * Description: Affiche lecaroussel associé à une galerie de Wordpress
  * Version: 1.0.0
