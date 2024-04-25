@@ -61,7 +61,6 @@
     // ajouter dans carrousel__form
     carrousel__form.appendChild(carrousel__radio);
     //Ajouter écouteur pour changer opacité de l'image
-    // Ajouter un écouteur d'événements pour changer l'opacité de l'image correspondante
     carrousel__radio.addEventListener("click", function () {
       let indexChoisi = carrousel__radio.dataset.index;
       let images = document.querySelectorAll(".carrousel__img");
