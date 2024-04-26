@@ -29,7 +29,8 @@
   for (let i = 0; i < galerie__img.length; i++) {
     creer_radio_carrousel(i);
   }
-
+  //Pouvoir afficher la première image dàs l'ouverture du carrousel
+  carrousel__figure.querySelector(".carrousel__img").style.opacity = 1;
   /**
    * Créer l'image du carrousel à partir de la galerie
    * @param {*} index  le numéro de l'image
