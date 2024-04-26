@@ -14,4 +14,4 @@
 - Créer un fichier carrousel.js
   1. afin d'ouvrir et fermer le carrousel
   2. Afficher dynamiquement les images de la galerie dans le carrousel
-  3. Créer les boutons radio associés à chaque image afin de la changer lorsqu'on clique
+- Créer les boutons radio associés à chaque image afin de la changer lorsqu'on clique
