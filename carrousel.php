@@ -36,7 +36,11 @@ function genere_html()
   $html = '<button class="bouton_ouvrir">Ouvrir Carrousel</button>
   <div class="carrousel">
   <button class="carrousel__x">X</button>
-  <figure class="carrousel__figure"></figure>
+  <figure class="carrousel__figure">
+  <button class="prev-fleche"><img src="https://s2.svgbox.net/hero-outline.svg?ic=arrow-left&color=000" width="28" height="28"></button>
+  <button class="next-fleche"><img src="https://s2.svgbox.net/hero-solid.svg?ic=arrow-right&amp;color=000" width="28" height="28"></button>
+  </figure>
+  
   <form action="" class = "carrousel__form"></form>
   </div>';
   return $html;

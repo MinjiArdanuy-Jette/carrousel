@@ -25,6 +25,24 @@
 .carrousel__figure {
   width: 100%;
   height: 94%;
+  position: relative;
+}
+
+.prev-fleche,
+.next-fleche {
+  position: absolute;
+  top: 50%;
+  border: none; /* Supprimer les bordures */
+  cursor: pointer;
+  z-index: 1;
+}
+
+.prev-fleche {
+  left: 10px;
+}
+
+.next-fleche {
+  right: 10px;
 }
 .carrousel__img {
   position: absolute;
