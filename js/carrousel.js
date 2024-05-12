@@ -96,12 +96,18 @@ let flecheSuivante = document.querySelector(".next-fleche");
 let flechePrecedente = document.querySelector(".prev-fleche");
 let index = 0;
 let images = document.querySelectorAll(".carrousel__img");
+let radios = document.querySelectorAll(".carrousel__radio");
+
+// Initialisation : mettre le premier bouton radio en tant que sélectionné
+radios[0].checked = true;
 
 flecheSuivante.addEventListener("click", function () {
   // Incrémentation de l'index sans dépasser les limites du carrousel
   index = (index + 1) % images.length;
   // Affichage de l'image correspondante
   afficherImage(index);
+  // Mettre à jour le bouton radio correspondant
+  radios[index].checked = true;
 });
 
 flechePrecedente.addEventListener("click", function () {
@@ -109,6 +115,8 @@ flechePrecedente.addEventListener("click", function () {
   index = (index - 1 + images.length) % images.length;
   // Affichage de l'image correspondante
   afficherImage(index);
+  // Mettre à jour le bouton radio correspondant
+  radios[index].checked = true;
 });
 
 /* Fonction pour afficher l'image correspondant à l'index donné */
