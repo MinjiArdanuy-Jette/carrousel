@@ -101,6 +101,17 @@ let radios = document.querySelectorAll(".carrousel__radio");
 // Initialisation : mettre le premier bouton radio en tant que sélectionné
 radios[0].checked = true;
 
+//Ajout d'un écouteur d'évnement pour pas que
+//l'image revienne en arrière si on alterne l'utilisation des boutons radios et des flèches afin de changer l'image
+for (let i = 0; i < radios.length; i++) {
+  radios[i].addEventListener("click", function () {
+    // Mettre à jour l'index pour refléter le bouton radio sélectionné
+    index = i;
+    // Afficher l'image correspondante
+    afficherImage(index);
+  });
+}
+
 flecheSuivante.addEventListener("click", function () {
   // Incrémentation de l'index sans dépasser les limites du carrousel
   index = (index + 1) % images.length;
