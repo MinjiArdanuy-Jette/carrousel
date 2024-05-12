@@ -31,6 +31,7 @@
   }
   //Pouvoir afficher la première image dàs l'ouverture du carrousel
   carrousel__figure.querySelector(".carrousel__img").style.opacity = 1;
+
   /**
    * Créer l'image du carrousel à partir de la galerie
    * @param {*} index  le numéro de l'image
@@ -39,10 +40,22 @@
   function creer_image_carrousel(index, elm) {
     let carrousel__img = document.createElement("img");
     carrousel__img.classList.add("carrousel__img");
+    let figureEntoure = document.createElement("figure");
+    let figcaption = elm.nextElementSibling; // Récupérer la légende de l'image
+
     carrousel__img.src = elm.src;
     /*Ajout d'un index pour chaque image*/
     carrousel__img.dataset.index = index;
-    carrousel__figure.appendChild(carrousel__img);
+    figureEntoure.appendChild(carrousel__img);
+
+    if (figcaption && figcaption.tagName === "FIGCAPTION") {
+      let legende = document.createElement("figcaption");
+      legende.classList.add("wp-element-caption");
+      legende.textContent = figcaption.textContent; // Ajouter le texte de la légende
+      figureEntoure.appendChild(legende);
+    }
+
+    carrousel__figure.appendChild(figureEntoure);
   }
 
   /**
@@ -133,12 +146,17 @@ flechePrecedente.addEventListener("click", function () {
 /* Fonction pour afficher l'image correspondant à l'index donné */
 function afficherImage(index) {
   let images = document.querySelectorAll(".carrousel__img");
+  let captions = document.querySelectorAll(".wp-element-caption");
 
   // Réinitialisation de l'opacité de toutes les images à 0
   for (let i = 0; i < images.length; i++) {
     images[i].style.opacity = 0;
+    captions[i].style.display = "none";
   }
 
   // Définition de l'opacité de l'image sélectionnée à 1
   images[index].style.opacity = 1;
+  captions[index].style.display = "flex";
 }
+//Ne pas voir toutes les légendes dès l'ouverture
+afficherImage(0);
