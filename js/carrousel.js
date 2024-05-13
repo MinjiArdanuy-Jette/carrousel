@@ -1,6 +1,4 @@
 (function () {
-  console.log("vive Javascript !");
-
   /*VARIABLES POUR L'OUVERTURE ET LA FERMETURE DU CARROUSEL*/
   let carrousel = document.querySelector(".carrousel");
   console.log("conteneur carrousel : " + carrousel.tagName);
@@ -47,7 +45,7 @@
     /*Ajout d'un index pour chaque image*/
     carrousel__img.dataset.index = index;
     figureEntoure.appendChild(carrousel__img);
-
+    //Mettre la légende dans l'image de carrousel
     if (figcaption && figcaption.tagName === "FIGCAPTION") {
       let legende = document.createElement("figcaption");
       legende.classList.add("wp-element-caption");
@@ -99,64 +97,105 @@
   carrousel__x.addEventListener("mousedown", function () {
     carrousel.classList.remove("carrousel--ouvrir");
   });
-})();
 
-/*SECTION DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
+  /*SECTION DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
 
-/*VARIABLES POUR LE DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
+  /*VARIABLES POUR LE DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
 
-let flecheSuivante = document.querySelector(".next-fleche");
-let flechePrecedente = document.querySelector(".prev-fleche");
-let index = 0;
-let images = document.querySelectorAll(".carrousel__img");
-let radios = document.querySelectorAll(".carrousel__radio");
-
-// Initialisation : mettre le premier bouton radio en tant que sélectionné
-radios[0].checked = true;
-
-//Ajout d'un écouteur d'évnement pour pas que
-//l'image revienne en arrière si on alterne l'utilisation des boutons radios et des flèches afin de changer l'image
-for (let i = 0; i < radios.length; i++) {
-  radios[i].addEventListener("click", function () {
-    // Mettre à jour l'index pour refléter le bouton radio sélectionné
-    index = i;
-    // Afficher l'image correspondante
-    afficherImage(index);
-  });
-}
-
-flecheSuivante.addEventListener("click", function () {
-  // Incrémentation de l'index sans dépasser les limites du carrousel
-  index = (index + 1) % images.length;
-  // Affichage de l'image correspondante
-  afficherImage(index);
-  // Mettre à jour le bouton radio correspondant
-  radios[index].checked = true;
-});
-
-flechePrecedente.addEventListener("click", function () {
-  // Décrémentation de l'index sans dépasser les limites du carrousel
-  index = (index - 1 + images.length) % images.length;
-  // Affichage de l'image correspondante
-  afficherImage(index);
-  // Mettre à jour le bouton radio correspondant
-  radios[index].checked = true;
-});
-
-/* Fonction pour afficher l'image correspondant à l'index donné */
-function afficherImage(index) {
+  let flecheSuivante = document.querySelector(".next-fleche");
+  let flechePrecedente = document.querySelector(".prev-fleche");
   let images = document.querySelectorAll(".carrousel__img");
-  let captions = document.querySelectorAll(".wp-element-caption");
+  let radios = document.querySelectorAll(".carrousel__radio");
 
-  // Réinitialisation de l'opacité de toutes les images à 0
-  for (let i = 0; i < images.length; i++) {
-    images[i].style.opacity = 0;
-    captions[i].style.display = "none";
+  // Initialisation : mettre le premier bouton radio en tant que sélectionné
+  radios[0].checked = true;
+
+  //Ajout d'un écouteur d'évnement pour pas que
+  //l'image revienne en arrière si on alterne l'utilisation des boutons radios et des flèches afin de changer l'image
+  for (let i = 0; i < radios.length; i++) {
+    radios[i].addEventListener("click", function () {
+      // Mettre à jour l'index pour refléter le bouton radio sélectionné
+      // index = i;
+      // Afficher l'image correspondante
+      afficherImage(index);
+    });
   }
 
-  // Définition de l'opacité de l'image sélectionnée à 1
-  images[index].style.opacity = 1;
-  captions[index].style.display = "flex";
-}
-//Ne pas voir toutes les légendes dès l'ouverture
-afficherImage(0);
+  flecheSuivante.addEventListener("click", function () {
+    // Incrémentation de l'index sans dépasser les limites du carrousel
+    index = (index + 1) % images.length;
+    // Mettre à jour le bouton radio correspondant
+    radios[index].checked = true;
+    // Affichage de l'image correspondante
+    afficherImage(index);
+    console.log("Index de l'image sélectionnée : " + index);
+    console.log("Index du bouton radio correspondant : " + index);
+  });
+
+  flechePrecedente.addEventListener("click", function () {
+    // Décrémentation de l'index sans dépasser les limites du carrousel
+    index = (index - 1 + images.length) % images.length;
+    // Mettre à jour le bouton radio correspondant
+    radios[index].checked = true;
+    // Affichage de l'image correspondante
+    afficherImage(index);
+    console.log("Index de l'image sélectionnée : " + index);
+    console.log("Index du bouton radio correspondant : " + index);
+  });
+
+  /* Fonction pour afficher l'image correspondant à l'index donné */
+  function afficherImage(index) {
+    let images = document.querySelectorAll(".carrousel__img");
+    let captions = document.querySelectorAll(".wp-element-caption");
+
+    // Réinitialisation de l'opacité de toutes les images à 0
+    for (let i = 0; i < images.length; i++) {
+      images[i].style.opacity = 0;
+      captions[i].style.display = "none";
+    }
+
+    // Définition de l'opacité de l'image sélectionnée à 1
+    images[index].style.opacity = 1;
+    captions[index].style.display = "flex";
+  }
+
+  //Ne pas voir toutes les légendes dès l'ouverture
+  afficherImage(0);
+
+  /*SECTION POUR AFFICHER IMAGE LORSQU'ON CLIQUE SUR LA GALERIE */
+  let imagesGalerie = document.querySelectorAll(".wp-block-image img");
+  console.log(imagesGalerie);
+  let legendes = document.querySelectorAll(".wp-element-caption");
+  console.log(legendes);
+  let boutonsRadio = document.querySelectorAll(".carrousel__radio");
+
+  // On récupère l'index de l'image dans le tableau
+  imagesGalerie.forEach((img, index) => {
+    img.dataset.index = index;
+  });
+
+  // On parcoure le tableau des images de la carte pour leur donner un écouteur d'événement qui permet d'ouvrir le carrousel
+  for (let img of imagesGalerie) {
+    img.addEventListener("click", function () {
+      // On recupere l'index de l'image
+      let index = this.dataset.index;
+      console.log("l'index: " + index);
+
+      // On affiche le carrousel
+      carrousel.classList.add("carrousel--ouvrir");
+
+      // On change l'opacite des images en fonction de l'index
+      for (let i = 0; i < images.length; i++) {
+        if (images[i].dataset.index == index) {
+          images[i].style.opacity = 1;
+          legendes[i].style.display = "flex"; // Afficher la légende correspondante
+        } else {
+          images[i].style.opacity = 0;
+          legendes[i].style.display = "none"; // Masquer les légendes des autres images
+        }
+      }
+      // On met à jour le bouton radio correspondant
+      boutonsRadio[index].checked = true;
+    });
+  }
+})();
