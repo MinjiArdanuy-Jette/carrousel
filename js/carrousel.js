@@ -20,14 +20,13 @@
   console.log(galerie__img);
   for (const elm of galerie__img) {
     creer_image_carrousel(index, elm);
-    // creer_radio_carrousel(index);
     index = index + 1;
   }
   // Ajout des boutons radios après avoir ajouté toutes les images
   for (let i = 0; i < galerie__img.length; i++) {
     creer_radio_carrousel(i);
   }
-  //Pouvoir afficher la première image dàs l'ouverture du carrousel
+  //Pouvoir afficher la première image dès l'ouverture du carrousel
   carrousel__figure.querySelector(".carrousel__img").style.opacity = 1;
 
   /**
@@ -110,12 +109,12 @@
   // Initialisation : mettre le premier bouton radio en tant que sélectionné
   radios[0].checked = true;
 
-  //Ajout d'un écouteur d'évnement pour pas que
+  //Ajout d'un écouteur d'événement pour pas que
   //l'image revienne en arrière si on alterne l'utilisation des boutons radios et des flèches afin de changer l'image
   for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener("click", function () {
       // Mettre à jour l'index pour refléter le bouton radio sélectionné
-      // index = i;
+      index = i;
       // Afficher l'image correspondante
       afficherImage(index);
     });
