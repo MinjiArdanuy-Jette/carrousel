@@ -2,8 +2,6 @@
   /*VARIABLES POUR L'OUVERTURE ET LA FERMETURE DU CARROUSEL*/
   let carrousel = document.querySelector(".carrousel");
   console.log("conteneur carrousel : " + carrousel.tagName);
-  let bouton = document.querySelector(".bouton_ouvrir");
-  // console.log("conteneur carrousel : " + bouton.tagName);
   let carrousel__x = document.querySelector(".carrousel__x");
   console.log("conteneur carrousel : " + carrousel__x.tagName);
 
