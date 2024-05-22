@@ -3,7 +3,7 @@
   let carrousel = document.querySelector(".carrousel");
   console.log("conteneur carrousel : " + carrousel.tagName);
   let bouton = document.querySelector(".bouton_ouvrir");
-  console.log("conteneur carrousel : " + bouton.tagName);
+  // console.log("conteneur carrousel : " + bouton.tagName);
   let carrousel__x = document.querySelector(".carrousel__x");
   console.log("conteneur carrousel : " + carrousel__x.tagName);
 
@@ -88,10 +88,43 @@
 
   /*SECTION OUVERTURE ET FERMETURE DU CARROUSEL*/
 
-  /* Écouteur pour ouvrir la boîte modale */
-  bouton.addEventListener("mousedown", function () {
-    carrousel.classList.add("carrousel--ouvrir");
+  /* Écouteur pour ouvrir la boîte modale lorsqu'on clique sur une image de la galerie*/
+  let imagesGalerie = document.querySelectorAll(".wp-block-image img");
+  console.log(imagesGalerie);
+  let legendes = document.querySelectorAll(".wp-element-caption");
+  console.log(legendes);
+  let boutonsRadio = document.querySelectorAll(".carrousel__radio");
+
+  // On récupère l'index de l'image dans le tableau
+  imagesGalerie.forEach((img, index) => {
+    img.dataset.index = index;
   });
+
+  // On parcoure le tableau des images de la carte pour leur donner un écouteur d'événement qui permet d'ouvrir le carrousel
+  for (let img of imagesGalerie) {
+    img.addEventListener("click", function () {
+      // On recupere l'index de l'image
+      let index = this.dataset.index;
+      console.log("l'index: " + index);
+
+      // On affiche le carrousel
+      carrousel.classList.add("carrousel--ouvrir");
+
+      // On change l'opacite des images en fonction de l'index
+      for (let i = 0; i < images.length; i++) {
+        if (images[i].dataset.index == index) {
+          images[i].style.opacity = 1;
+          legendes[i].style.display = "flex"; // Afficher la légende correspondante
+        } else {
+          images[i].style.opacity = 0;
+          legendes[i].style.display = "none"; // Masquer les légendes des autres images
+        }
+      }
+      // On met à jour le bouton radio correspondant
+      boutonsRadio[index].checked = true;
+    });
+  }
+
   /* Écouteur pour fermer la boîte modale */
   carrousel__x.addEventListener("mousedown", function () {
     carrousel.classList.remove("carrousel--ouvrir");
@@ -160,41 +193,4 @@
 
   //Ne pas voir toutes les légendes dès l'ouverture
   afficherImage(0);
-
-  /*SECTION POUR AFFICHER IMAGE LORSQU'ON CLIQUE SUR LA GALERIE */
-  let imagesGalerie = document.querySelectorAll(".wp-block-image img");
-  console.log(imagesGalerie);
-  let legendes = document.querySelectorAll(".wp-element-caption");
-  console.log(legendes);
-  let boutonsRadio = document.querySelectorAll(".carrousel__radio");
-
-  // On récupère l'index de l'image dans le tableau
-  imagesGalerie.forEach((img, index) => {
-    img.dataset.index = index;
-  });
-
-  // On parcoure le tableau des images de la carte pour leur donner un écouteur d'événement qui permet d'ouvrir le carrousel
-  for (let img of imagesGalerie) {
-    img.addEventListener("click", function () {
-      // On recupere l'index de l'image
-      let index = this.dataset.index;
-      console.log("l'index: " + index);
-
-      // On affiche le carrousel
-      carrousel.classList.add("carrousel--ouvrir");
-
-      // On change l'opacite des images en fonction de l'index
-      for (let i = 0; i < images.length; i++) {
-        if (images[i].dataset.index == index) {
-          images[i].style.opacity = 1;
-          legendes[i].style.display = "flex"; // Afficher la légende correspondante
-        } else {
-          images[i].style.opacity = 0;
-          legendes[i].style.display = "none"; // Masquer les légendes des autres images
-        }
-      }
-      // On met à jour le bouton radio correspondant
-      boutonsRadio[index].checked = true;
-    });
-  }
 })();
