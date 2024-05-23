@@ -120,6 +120,8 @@
       }
       // On met à jour le bouton radio correspondant
       boutonsRadio[index].checked = true;
+      // Mettre à jour l'index global
+      index = parseInt(imgIndex, 10);
     });
   }
 
@@ -181,12 +183,18 @@
     // Réinitialisation de l'opacité de toutes les images à 0
     for (let i = 0; i < images.length; i++) {
       images[i].style.opacity = 0;
-      captions[i].style.display = "none";
+      let caption = images[i].nextElementSibling;
+      if (caption && caption.classList.contains("wp-element-caption")) {
+        caption.style.display = "none";
+      }
     }
 
     // Définition de l'opacité de l'image sélectionnée à 1
     images[index].style.opacity = 1;
-    captions[index].style.display = "flex";
+    let caption = images[index].nextElementSibling;
+    if (caption && caption.classList.contains("wp-element-caption")) {
+      caption.style.display = "flex";
+    }
   }
 
   //Ne pas voir toutes les légendes dès l'ouverture
