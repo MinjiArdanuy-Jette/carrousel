@@ -120,14 +120,17 @@
       }
       // On met à jour le bouton radio correspondant
       boutonsRadio[index].checked = true;
-      // Mettre à jour l'index global
-      index = parseInt(imgIndex, 10);
     });
   }
 
   /* Écouteur pour fermer la boîte modale */
   carrousel__x.addEventListener("mousedown", function () {
     carrousel.classList.remove("carrousel--ouvrir");
+    // Réafficher toutes les légendes lorsque le carrousel est fermé
+    let captions = document.querySelectorAll(".wp-element-caption");
+    for (let caption of captions) {
+      caption.style.display = "flex";
+    }
   });
 
   /*SECTION DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
