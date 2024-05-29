@@ -186,17 +186,21 @@
     // Réinitialisation de l'opacité de toutes les images à 0
     for (let i = 0; i < images.length; i++) {
       images[i].style.opacity = 0;
-      let caption = images[i].nextElementSibling;
-      if (caption && caption.classList.contains("wp-element-caption")) {
-        caption.style.display = "none";
+      // let caption = images[i].nextElementSibling;
+      // if (caption && caption.classList.contains("wp-element-caption")) {
+      //   caption.style.display = "none";
+      // }
+      for (let caption of captions) {
+        caption.style.opacity = 1;
+        caption.style.opacity = "none";
       }
     }
 
     // Définition de l'opacité de l'image sélectionnée à 1
     images[index].style.opacity = 1;
-    let caption = images[index].nextElementSibling;
-    if (caption && caption.classList.contains("wp-element-caption")) {
-      caption.style.display = "flex";
+    for (let caption of captions) {
+      caption.style.opacity = 1;
+      caption.style.opacity = "flex";
     }
   }
 
