@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Caroussel
+ * Plugin Name: Carousel
  * Author: Minji Ardanuy-Jetté
  * Description: Affiche lecaroussel associé à une galerie de Wordpress
  * Version: 1.0.0
@@ -27,18 +27,25 @@ function enqueue_style_script()
     true
   );
 }
-
+// Il faut que wp_head(); sooit ajouté juste avant la bbalise </head>
+//et que wp_footer; soit ajouté juste avant la balise </body>
 add_action('wp_enqueue_scripts', 'enqueue_style_script');
 function genere_html()
 {
 
-  $html = '<button class="bouton_ouvrir">Ouvrir Carrousel</button>
+  $html = '
   <div class="carrousel">
-  <a href="" class="carrousel__x">X</a>
-  <figure class="carrousel__figure"></figure>
-  <form action="" class = "carrousel_form"></form>
+  <button class="carrousel__x">X</button>
+  <figure class="carrousel__figure">
+  <button class="prev-fleche"><img src="https://s2.svgbox.net/hero-outline.svg?ic=arrow-left&color=000" width="28" height="28"></button>
+  <button class="next-fleche"><img src="https://s2.svgbox.net/hero-solid.svg?ic=arrow-right&amp;color=000" width="28" height="28"></button>
+  </figure>
+  
+  <form action="" class = "carrousel__form"></form>
   </div>';
   return $html;
 }
-
+//[carrousel] juste après la galerie dans votre article ou page
+//Quand la finction the_content() rencontrera [carrousel] c'est à ce moment 
+//que le carrousel sera initialisé
 add_shortcode("carrousel", "genere_html");
