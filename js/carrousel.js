@@ -47,6 +47,7 @@
       let legende = document.createElement("figcaption");
       legende.classList.add("wp-element-caption");
       legende.textContent = figcaption.textContent; // Ajouter le texte de la légende
+      legende.dataset.index = index; // Ajout de l'attribut data-index
       figureEntoure.appendChild(legende);
     }
 
@@ -74,13 +75,7 @@
       let indexChoisi = carrousel__radio.dataset.index;
       let images = document.querySelectorAll(".carrousel__img");
 
-      // Réinitialiser l'opacité de toutes les images à 0
-      for (let i = 0; i < images.length; i++) {
-        images[i].style.opacity = 0;
-      }
-
-      // Définir l'opacité de l'image sélectionnée à 1
-      images[indexChoisi].style.opacity = 1;
+      afficherImage(parseInt(carrousel__radio.dataset.index));
     });
   }
 
@@ -102,23 +97,13 @@
   for (let img of imagesGalerie) {
     img.addEventListener("click", function () {
       // On recupere l'index de l'image
-      let index = this.dataset.index;
-      console.log("l'index: " + index);
+      let index = parseInt(this.dataset.index);
+      // console.log("l'index: " + index);
 
       // On affiche le carrousel
       carrousel.classList.add("carrousel--ouvrir");
 
-      // On change l'opacite des images en fonction de l'index
-      for (let i = 0; i < images.length; i++) {
-        if (images[i].dataset.index == index) {
-          images[i].style.opacity = 1;
-          legendes[i].style.display = "flex"; // Afficher la légende correspondante
-        } else {
-          images[i].style.opacity = 0;
-          legendes[i].style.display = "none"; // Masquer les légendes des autres images
-        }
-      }
-      // On met à jour le bouton radio correspondant
+      afficherImage(index);
       boutonsRadio[index].checked = true;
     });
   }
@@ -126,11 +111,6 @@
   /* Écouteur pour fermer la boîte modale */
   carrousel__x.addEventListener("mousedown", function () {
     carrousel.classList.remove("carrousel--ouvrir");
-    // Réafficher toutes les légendes lorsque le carrousel est fermé
-    let captions = document.querySelectorAll(".wp-element-caption");
-    for (let caption of captions) {
-      caption.style.display = "flex";
-    }
   });
 
   /*SECTION DÉFILEMENT IMAGES AVEC LES FLÈCHES DU CARROUSEL*/
@@ -180,23 +160,34 @@
 
   /* Fonction pour afficher l'image correspondant à l'index donné */
   function afficherImage(index) {
-    let images = document.querySelectorAll(".carrousel__img");
-    let captions = document.querySelectorAll(".wp-element-caption");
+    let images = carrousel__figure.querySelectorAll(".carrousel__img");
+    let captions = carrousel__figure.querySelectorAll(".wp-element-caption");
 
     // Réinitialisation de l'opacité de toutes les images à 0
     for (let i = 0; i < images.length; i++) {
       images[i].style.opacity = 0;
-      let caption = images[i].nextElementSibling;
-      if (caption && caption.classList.contains("wp-element-caption")) {
-        caption.style.display = "none";
-      }
+    }
+
+    for (let caption of captions) {
+      caption.style.display = "none";
     }
 
     // Définition de l'opacité de l'image sélectionnée à 1
     images[index].style.opacity = 1;
-    let caption = images[index].nextElementSibling;
-    if (caption && caption.classList.contains("wp-element-caption")) {
-      caption.style.display = "flex";
+
+    // Vérification des légendes sélectionnées
+    console.log("Nombre de légendes trouvées :", captions.length);
+    for (let i = 0; i < captions.length; i++) {
+      console.log("Index de la légende :", captions[i].dataset.index);
+      if (captions[i].dataset.index == index) {
+        console.log(
+          "Légende trouvée pour l'image sélectionnée :",
+          captions[i].textContent
+        );
+        captions[i].style.display = "flex";
+        captions[i].style.justifyContent = "center"; // Centrer la légende
+        captions[i].style.alignItems = "center"; // Centrer verticalement
+      }
     }
   }
 

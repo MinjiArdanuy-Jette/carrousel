@@ -1,4 +1,4 @@
-# Labo 5 - TP2 : Mise en place d'un carrousel d'images
+# TP2 : Mise en place d'un carrousel d'images
 
 ## Ma Github Page Minji Ardanuy-Jetté
 
@@ -6,12 +6,10 @@
 
 ## Lien vers l'hébergeur WHC : https://gftnth00.mywhc.ca/tim06/
 
-## Laboratoire 5: Déplyer un plugin de carrousel d'image pour les galeries des destinations
-
 ## Étapes de la réalisation
 
-- Créer un fichier carrousel.php afin d'afficher le html
-- Créer un fichier carrousel.js
-  1. afin d'ouvrir et fermer le carrousel
-  2. Afficher dynamiquement les images de la galerie dans le carrousel
-- Créer les boutons radio associés à chaque image afin de la changer lorsqu'on clique
+- Une série de boutons radio permettant d’accéder à chacune des images
+- Deux flèches « Précédent » et « Suivant »
+- En cliquant sur une image de la galerie le carrousel s’affiche avec l’image sélectionné
+- Le changement d’image est animé
+- La dimension de la boîte modale s’adapte aux proportions de l’image source
