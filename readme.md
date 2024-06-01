@@ -1,4 +1,4 @@
-# Labo 5 - TP2 : Mise en place d'un carrousel d'images
+# TP2 : Mise en place d'un carrousel d'images
 
 ## Ma Github Page Minji Ardanuy-Jetté
 
